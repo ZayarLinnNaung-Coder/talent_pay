@@ -27,9 +27,10 @@ public class UserController {
     }
 
     @PostMapping
-    public void registerUser(@RequestBody NewUserRequest request){
+    public ResponseEntity<TalentResponse<UserResponse>> registerUser(@RequestBody NewUserRequest request){
         TalentResponse<UserResponse> response =
                 new TalentResponse<>(userService.registerUser(request), "Successfully registered", HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 }
