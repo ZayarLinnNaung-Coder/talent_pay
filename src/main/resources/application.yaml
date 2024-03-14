@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=TALENT_PAY;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: 123@ace
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
