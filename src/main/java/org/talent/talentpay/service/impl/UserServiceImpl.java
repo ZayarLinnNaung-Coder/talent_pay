@@ -1,9 +1,11 @@
 package org.talent.talentpay.service.impl;
 
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.talent.talentpay.domain.NewUserRequest;
 import org.talent.talentpay.domain.UserInfo;
+import org.talent.talentpay.domain.UserResponse;
 import org.talent.talentpay.domain.UserValidateRequest;
 import org.talent.talentpay.entity.Users;
 import org.talent.talentpay.repo.UserRepo;
@@ -14,6 +16,7 @@ import org.talent.talentpay.service.UserService;
 public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
+    private final ModelMapper modelMapper;
 
     @Override
     public UserInfo validateUser(UserValidateRequest request) {
@@ -30,9 +33,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users registerUser(NewUserRequest request) {
+    public UserResponse registerUser(NewUserRequest request) {
         Users user = Users.of(request);
-        return userRepo.save(user);
+        return modelMapper.map(userRepo.save(user), UserResponse.class);
     }
 
 }
