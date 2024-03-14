@@ -2,6 +2,7 @@ package org.talent.talentpay.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.talent.talentpay.domain.NewUserRequest;
 import org.talent.talentpay.domain.UserInfo;
 import org.talent.talentpay.domain.UserValidateRequest;
 import org.talent.talentpay.entity.Users;
@@ -26,6 +27,12 @@ public class UserServiceImpl implements UserService {
 
         return UserInfo.of(user);
 
+    }
+
+    @Override
+    public Users registerUser(NewUserRequest request) {
+        Users user = Users.of(request);
+        return userRepo.save(user);
     }
 
 }
